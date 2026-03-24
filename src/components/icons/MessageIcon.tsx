@@ -1,0 +1,31 @@
+import React from "react";
+
+type IconProps = React.SVGProps<SVGSVGElement>;
+
+const MessageIcon: React.FC<IconProps> = (props) => {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M3.12679 6.45831C3.12679 6.45831 13.0832 6.45831 13.5435 6.45831C14.0037 6.45831 14.3768 6.83141 14.3768 7.29165V14.375C14.3768 14.8352 14.0037 15.2083 13.5435 15.2083H8.75179L5.00179 17.2916V15.2083H3.12679C2.66655 15.2083 2.29346 14.8352 2.29346 14.375V7.29165C2.29346 6.83141 2.66655 6.45831 3.12679 6.45831Z"
+        stroke="#666666"
+        strokeWidth={1.25}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M14.3748 11.875H16.8766C17.3369 11.875 17.71 11.5019 17.71 11.0417V3.95833C17.71 3.4981 17.3369 3.125 16.8766 3.125H6.66829C6.20806 3.125 5.83496 3.4981 5.83496 3.95833V6.45833"
+        stroke="#666666"
+        strokeWidth={1.25}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export default MessageIcon;

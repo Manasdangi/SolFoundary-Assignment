@@ -1,0 +1,24 @@
+import React from "react";
+
+type IconProps = React.SVGProps<SVGSVGElement>;
+
+const ChatIcon: React.FC<IconProps> = (props) => {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M12.7084 8.125H7.29175M10.2084 11.875H7.29175M2.29175 16.875H13.5417C15.8429 16.875 17.7084 15.0095 17.7084 12.7083V7.29167C17.7084 4.99048 15.8429 3.125 13.5417 3.125H6.45841C4.15723 3.125 2.29175 4.99048 2.29175 7.29167V16.875Z"
+        stroke="currentColor"
+        strokeWidth={1.25}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export default ChatIcon;
