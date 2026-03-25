@@ -32,8 +32,6 @@ export function OnboardingCard({
   const hasLower = analyzedSoFar != null || insights.length > 0 || hasNotes;
 
   const [insightsRevealed, setInsightsRevealed] = useState(false);
-  // Ready state of the card.
-  const [ready, setReady] = useState(true);
   const [lowerHeight, setLowerHeight] = useState(0);
 
   // Refs for the lower section. These are used to animate the lower section.
@@ -46,12 +44,10 @@ export function OnboardingCard({
   const onTextEnterCompleteRef = useRef(onTextEnterComplete);
   onTextEnterCompleteRef.current = onTextEnterComplete;
 
-  // Transition key changes when the text enters the card.
   if (prevNonceRef.current !== transitionKey) {
     prevNonceRef.current = transitionKey;
     if (insightsRevealed) setInsightsRevealed(false);
     if (lowerHeight !== 0) setLowerHeight(0);
-    if (ready) setReady(false);
   }
 
   // Handles the text entering the card.
@@ -108,13 +104,6 @@ export function OnboardingCard({
     if (el) setLowerHeight(el.scrollHeight);
   }, [data]);
 
-  // After a synchronous reset (ready → false), flip back to true on the next frame so the browser paints the zeroed-out state before the component becomes visible again.
-  useLayoutEffect(() => {
-    if (!ready) {
-      requestAnimationFrame(() => setReady(true));
-    }
-  }, [ready]);
-
   // When reduced-motion is active, skip CSS transitions and fire the enter-complete callback immediately.
   useLayoutEffect(() => {
     if (textExiting) return;
@@ -132,10 +121,7 @@ export function OnboardingCard({
   /* ── Render ─────────────────────────────────────────────── */
 
   return (
-    <div
-      className="w-[600px] max-w-full"
-      style={ready ? undefined : { opacity: 0 }}
-    >
+    <div className="w-[600px] max-w-full">
       {/* Card */}
       <Card
         className="relative z-10 w-full max-w-none overflow-hidden"
@@ -157,7 +143,7 @@ export function OnboardingCard({
       {hasLower && (
         <div
           ref={lowerRevealRef}
-          className={`relative z-0 w-full insights-reveal ${textExiting ? "text-fade-out" : ""}`}
+          className={`relative z-0 w-full ${insightsRevealed ? "insights-reveal" : ""} ${textExiting ? "text-fade-out" : ""}`}
           style={{
             marginTop:
               insightsRevealed && lowerHeight > 0
