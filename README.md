@@ -24,6 +24,7 @@ src/
 ├── main.tsx
 └── index.css           # Tailwind theme, keyframes, animation utilities
 ```
+Deployed link: https://sol-foundary-assignment.vercel.app/
 
 ## Architecture
 
@@ -36,7 +37,6 @@ OnboardingFlow (state machine: step, textExiting, enterNonce, ctaReady)
 │   └── Notes (step 3: footer summary text)
 └── CtaFooter (deferred-unmount pattern for fade-out on click)
 ```
-Deployed link: https://sol-foundary-assignment.vercel.app/
 https://github.com/user-attachments/assets/5c456885-7e19-4d32-b91d-45df98769a73
 
 ## Getting Started
