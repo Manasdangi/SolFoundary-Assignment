@@ -1,5 +1,5 @@
+import type { AnalyzedSoFarData, SummaryRow } from "../type";
 import { Row } from "./Row";
-import type { AnalyzedSoFarData, SummaryRow } from "./type";
 
 type AnalyzedSoFarProps = {
   data: AnalyzedSoFarData;

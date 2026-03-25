@@ -1,5 +1,5 @@
+import type { SummaryRow } from "../type";
 import { Row } from "./Row";
-import type { SummaryRow } from "./type";
 
 type InsightsProps = {
   insights: SummaryRow[];

@@ -1,7 +1,7 @@
 import type { AnimationEvent } from "react";
 import { useState } from "react";
-import { EnterKeyIcon } from "../../icons/EnterKeyIcon";
-import { Button } from "../../ui/Button";
+import { EnterKeyIcon } from "../../../icons/EnterKeyIcon";
+import { Button } from "../../../ui/Button";
 
 const STEP_CTAS = ["Let's go", "Show me what you found", "Proceed"] as const;
 

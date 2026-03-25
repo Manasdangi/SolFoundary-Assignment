@@ -1,5 +1,5 @@
-import type { SummaryRowSegment } from "./type";
-import { ICON_SPRITE } from "../../icons/iconSprite";
+import { ICON_SPRITE } from "../../../icons/iconSprite";
+import type { SummaryRowSegment } from "../type";
 
 type SegmentProps = {
   segment: SummaryRowSegment;

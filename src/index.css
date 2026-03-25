@@ -5,7 +5,6 @@
   --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
 
-/* ── Keyframes ─────────────────────────────────────────────── */
 
 @keyframes fade-in {
   from { opacity: 0; }
@@ -17,7 +16,6 @@
   to { opacity: 0; }
 }
 
-/* ── Onboarding animation utilities ────────────────────────── */
 
 @layer utilities {
   /* Shared exit animation for title, subtitle, insights, and CTA */
@@ -27,18 +25,18 @@
 
   /* CTA button entrance */
   .cta-fade-in {
-    animation: fade-in 0.4s linear both;
+    animation: fade-in 0.3s linear both;
   }
 
   /* Staggered reveal for title (delay: 250ms) and subtitle (delay: 400ms) */
   .stagger-reveal-1 {
     opacity: 0;
-    animation: fade-in 0.48s linear 0.25s both;
+    animation: fade-in 0.8s linear 0.25s both;
   }
 
   .stagger-reveal-2 {
     opacity: 0;
-    animation: fade-in 0.48s linear 0.4s both;
+    animation: fade-in 0.8s linear 0.4s both;
   }
 }
 
@@ -77,7 +75,6 @@
   }
 }
 
-/* ── Base resets ───────────────────────────────────────────── */
 
 body {
   margin: 0;

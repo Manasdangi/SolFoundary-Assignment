@@ -3,15 +3,17 @@ import type { OnboardingCardData } from "../components/modules/onboarding/type";
 const ONBOARDING_STEPS: OnboardingCardData[] = [
   {
     title: "Welcome, Manas",
-    subtitle:
-      "Your open loops are captured & organized. Time to start closing them.",
+    subtitle: [
+      "Your open loops are captured & organized.",
+      "Time to start closing them.",
+    ],
     insights: [],
     notes: null,
   },
   {
     title: "First, here’s what we sifted through so far...",
-    subtitleLines: [
-      "This is across the last 14 days. ",
+    subtitle: [
+      "This is across the last 14 days.",
       "Open loops from earlier will be captured soon.",
     ],
     analyzedSoFar: {
@@ -27,8 +29,8 @@ const ONBOARDING_STEPS: OnboardingCardData[] = [
     notes: null,
   },
   {
-    title: "Across your Slack, here's what we found",
-    subtitle: "Sol will continue to find older & newer items over time",
+    title: "Across your Slack, here's what we found.",
+    subtitle: ["Sol will continue to find older & newer items over time."],
     insights: [
       {
         id: "collaborating",
@@ -62,6 +64,5 @@ export const TOTAL_STEPS = ONBOARDING_STEPS.length;
 
 export function getOnboardingCardData(step: number): OnboardingCardData {
   const data = ONBOARDING_STEPS[step];
-  if (!data) throw new Error(`Invalid onboarding step: ${step}`);
   return data;
 }

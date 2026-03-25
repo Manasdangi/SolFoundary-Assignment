@@ -1,5 +1,5 @@
 import type { AnimationEvent } from "react";
-import { SolIcon } from "../../icons/SolIcon";
+import { SolIcon } from "../../../icons/SolIcon";
 
 const titleCls =
   "font-display text-[32px] font-medium leading-snug tracking-tight text-neutral-900";
@@ -12,7 +12,7 @@ type CardContentProps = {
   subtitle: string[];
   textExiting: boolean;
   /** Bumps on each transition so stagger can replay for new copy. */
-  headingEnterNonce: number;
+  transitionKey: number;
   onTextExitComplete?: () => void;
   onTextEnterComplete?: () => void;
 };
@@ -22,7 +22,7 @@ export function CardContent({
   title,
   subtitle,
   textExiting,
-  headingEnterNonce,
+  transitionKey,
   onTextExitComplete,
   onTextEnterComplete,
 }: CardContentProps) {
@@ -56,7 +56,7 @@ export function CardContent({
     </div>
   ) : (
     <div
-      key={headingEnterNonce}
+      key={transitionKey}
       className="flex w-full max-w-[60%] flex-col items-center"
     >
       <h1

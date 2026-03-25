@@ -19,8 +19,7 @@ export type AnalyzedSoFarData = {
 
 export type OnboardingCardData = {
   title: string;
-  subtitle?: string;
-  subtitleLines?: readonly string[];
+  subtitle: string[];
   analyzedSoFar?: AnalyzedSoFarData;
   insights: SummaryRow[];
   notes: string | null;

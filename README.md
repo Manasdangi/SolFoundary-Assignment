@@ -1,28 +1,40 @@
 # Solfoundary Assignment
 
-A multi-step onboarding flow built with React, TypeScript, and Tailwind CSS.
+A multi-step onboarding flow for **Sol**, built with React, TypeScript, and Tailwind CSS. The UI walks a new user through a 3-step wizard that summarizes their Slack activity — messages analyzed, collaboration insights, and open loops — with coordinated fade/stagger animations between steps.
 
 ## Tech Stack
 
-- **React 19** with TypeScript
-- **Vite** for development and bundling
-- **Tailwind CSS v4** for styling
-- **ESLint** for code linting
+- **React 19** with TypeScript (strict mode)
+- **Vite 8** for development and bundling
+- **Tailwind CSS v4** (Vite plugin, `@theme` design tokens)
+- **ESLint** with React hooks and refresh plugins
 
 ## Project Structure
 
 ```
 src/
 ├── components/
-│   ├── icons/          # Custom SVG icon components
+│   ├── icons/          # SVG icon components + icon sprite registry
 │   ├── modules/
-│   │   └── onboarding/ # Onboarding flow (cards, insights, segments, etc.)
-│   └── ui/             # Reusable UI components (Button, Card)
+│   │   └── onboarding/ # Onboarding flow, card, insights, segments
+│   └── ui/             # Reusable primitives (Button, Card)
 ├── data/
-│   └── onboardingConfig.ts  # Step configuration data
+│   └── onboardingConfig.ts  # Step content & config
 ├── App.tsx
 ├── main.tsx
-└── index.css
+└── index.css           # Tailwind theme, keyframes, animation utilities
+```
+
+## Architecture
+
+```
+OnboardingFlow (state machine: step, textExiting, enterNonce, ctaReady)
+├── OnboardingCard (coordinates entrance/exit animations)
+│   ├── CardContent (Sol logo + staggered title/subtitle reveal)
+│   ├── AnalyzedSoFar (step 2: message/thread/channel counts)
+│   ├── Insights (step 3: collaboration & open loop rows)
+│   └── Notes (step 3: footer summary text)
+└── CtaFooter (deferred-unmount pattern for fade-out on click)
 ```
 
 ## Getting Started
