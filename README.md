@@ -36,7 +36,8 @@ OnboardingFlow (state machine: step, textExiting, enterNonce, ctaReady)
 │   └── Notes (step 3: footer summary text)
 └── CtaFooter (deferred-unmount pattern for fade-out on click)
 ```
-https://github.com/user-attachments/assets/b063fec6-a149-488c-9e32-d774c40f37f1
+
+https://github.com/user-attachments/assets/5c456885-7e19-4d32-b91d-45df98769a73
 
 ## Getting Started
 
