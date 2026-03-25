@@ -5,130 +5,36 @@
   --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
 
-@keyframes onboarding-in {
-  from {
-    opacity: 0;
-    transform: translateY(1rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-@keyframes onboarding-out {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-0.5rem);
-  }
-}
-
-/* Insights panels: fade only — no vertical motion. */
-@keyframes onboarding-panel-in-fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes onboarding-panel-out-fade {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-/* CTA: opacity fade-in only (aligned with title/subtitle). */
-@keyframes onboarding-button-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Title + subtitle: exit before step change (opacity only). */
-@keyframes onboarding-text-fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes onboarding-text-fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Welcome (and similar): sequential reveal, linear; opacity only — no Y movement. */
-@keyframes onboarding-line-reveal {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
 @layer utilities {
-  .animate-onboarding-in {
-    animation: onboarding-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-
-  .animate-onboarding-out {
-    animation: onboarding-out 0.34s cubic-bezier(0.4, 0, 1, 1) both;
-  }
-
-  .animate-onboarding-in-fade {
-    animation: onboarding-panel-in-fade 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-
-  .animate-onboarding-out-fade {
-    animation: onboarding-panel-out-fade 0.34s cubic-bezier(0.4, 0, 1, 1) both;
-  }
-
   .animate-onboarding-button {
-    animation: onboarding-button-in 0.4s linear both;
+    animation: fade-in 0.4s linear both;
   }
 
   .animate-onboarding-text-out {
-    animation: onboarding-text-fade-out 0.34s linear both;
-  }
-
-  .animate-onboarding-text-in {
-    animation: onboarding-text-fade-in 0.4s linear both;
-  }
-
-  /* Staggered delays on the same `onboarding-line-reveal` keyframe (title, then subtitle). */
-  .onboarding-line-reveal-delay-1 {
-    animation: onboarding-line-reveal 0.48s linear 0.1s both;
+    animation: fade-out 0.34s linear both;
   }
 
   .onboarding-line-reveal-delay-2 {
-    animation: onboarding-line-reveal 0.48s linear 0.25s both;
+    opacity: 0;
+    animation: fade-in 0.48s linear 0.25s both;
   }
 
   .onboarding-line-reveal-delay-3 {
-    animation: onboarding-line-reveal 0.48s linear 0.4s both;
+    opacity: 0;
+    animation: fade-in 0.48s linear 0.4s both;
   }
 }
 
-/* Top-right diagonal hatch on onboarding cards (clipped by parent overflow + radius). */
 @layer components {
   .card-corner-hatch {
     pointer-events: none;
@@ -172,23 +78,16 @@ body {
   min-height: 100dvh;
 }
 
-/* Insights + footer: slide into view after heading reveal finishes. */
 .onboarding-lower-reveal {
   transition: grid-template-rows 1.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-onboarding-in,
-  .animate-onboarding-out,
-  .animate-onboarding-in-fade,
-  .animate-onboarding-out-fade,
   .animate-onboarding-button {
     animation-duration: 0.01ms !important;
   }
 
   .animate-onboarding-text-out,
-  .animate-onboarding-text-in,
-  .onboarding-line-reveal-delay-1,
   .onboarding-line-reveal-delay-2,
   .onboarding-line-reveal-delay-3 {
     animation: none !important;

@@ -11,15 +11,17 @@ export type SummaryRow = {
   segments: SummaryRowSegment[];
 };
 
+export type AnalyzedSoFarData = {
+  id: string;
+  label: string;
+  segments: SummaryRowSegment[];
+};
+
 export type OnboardingCardData = {
   title: string;
   subtitle?: string;
   subtitleLines?: readonly string[];
-  analyzedSoFar?: {
-    id: string;
-    label: string;
-    segments: SummaryRowSegment[];
-  };
+  analyzedSoFar?: AnalyzedSoFarData;
   insights: SummaryRow[];
   notes: string | null;
 };

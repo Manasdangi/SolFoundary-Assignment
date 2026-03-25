@@ -5,11 +5,10 @@ type IconProps = React.SVGProps<SVGSVGElement>;
 const FolderIcon: React.FC<IconProps> = (props) => {
   return (
     <svg
-      width="22"
-      height="20"
       viewBox="0 0 22 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <g filter="url(#filter0_d_1_542)">
         <path
@@ -74,9 +73,8 @@ const FolderIcon: React.FC<IconProps> = (props) => {
       </g>
       <foreignObject x="1.87892" y="4.16622" width="17.8784" height="13.8253">
         <div
-          xmlns="http://www.w3.org/1999/xhtml"
           style={{backdropFilter: "blur(0.77px)", clipPath: "url(#bgblur_0_1_542_clip_path)", height: "100%", width: "100%"}}
-        ></div>
+        />
       </foreignObject>
       <path
         data-figma-bg-blur-radius="1.53061"

@@ -134,7 +134,7 @@ export function OnboardingCard({
           style={{ gridTemplateRows: insightsRevealed ? "1fr" : "0fr" }}
         >
           <div
-            className={`min-h-0 overflow-hidden ${textExiting ? "animate-onboarding-text-out" : ""}`}
+            className={`min-h-0 overflow-hidden transition-opacity duration-300 ${insightsRevealed ? "opacity-100" : "opacity-0"} ${textExiting ? "animate-onboarding-text-out" : ""}`}
           >
             {analyzedSoFar && <AnalyzedSoFar data={analyzedSoFar} />}
             <Insights insights={insights} />

@@ -1,11 +1,5 @@
 import { Row } from "./Row";
-import type { SummaryRow, SummaryRowSegment } from "./type";
-
-export type AnalyzedSoFarData = {
-  id: string;
-  label: string;
-  segments: SummaryRowSegment[];
-};
+import type { AnalyzedSoFarData, SummaryRow } from "./type";
 
 type AnalyzedSoFarProps = {
   data: AnalyzedSoFarData;

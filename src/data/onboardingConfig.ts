@@ -1,18 +1,11 @@
-/**
- * Step-specific layout + copy for `OnboardingCard`.
- * Swap this module for API-driven data later.
- */
-
 import type { OnboardingCardData } from "../components/modules/onboarding/type";
 
-export const step1OnboardingCardData: OnboardingCardData = {
+const ONBOARDING_STEPS: OnboardingCardData[] = [{
   title: "Welcome, Manas",
   subtitle: "Your personal AI, custom-trained. Time to start sharing here.",
   insights: [],
   notes: null,
-};
-
-export const step2OnboardingCardData: OnboardingCardData = {
+}, {
   title: "First, here’s what we sifted through so far...",
   subtitleLines: [
     "This is across the last 14 days. ",
@@ -29,9 +22,7 @@ export const step2OnboardingCardData: OnboardingCardData = {
   },
   insights: [],
   notes: null,
-};
-
-export const step3OnboardingCardData: OnboardingCardData = {
+}, {
   title: "Across your Slack, here's what we found",
   subtitle: "Sol will continue to find older & newer items over time",
   insights: [
@@ -56,11 +47,12 @@ export const step3OnboardingCardData: OnboardingCardData = {
     },
   ],
   notes: "8 new this week, 7 have turned inactive & 4 are overdue",
-};
+}];
+
+export const TOTAL_STEPS = ONBOARDING_STEPS.length;
 
 export function getOnboardingCardData(step: number): OnboardingCardData {
-  if (step === 0) return step1OnboardingCardData;
-  if (step === 1) return step2OnboardingCardData;
-  if (step === 2) return step3OnboardingCardData;
-  throw new Error(`getOnboardingCardData: invalid step ${step}`);
+  const data = ONBOARDING_STEPS[step];
+  if (!data) throw new Error(`Invalid onboarding step: ${step}`);
+  return data;
 }

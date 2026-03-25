@@ -1,9 +1,7 @@
 import { useCallback, useState } from "react";
 import { OnboardingCard } from "./OnboardingCard";
 import { CtaFooter } from "./CtaFooter";
-import { getOnboardingCardData } from "../../../data/onboardingConfig";
-
-const LAST_STEP = 2;
+import { getOnboardingCardData, TOTAL_STEPS } from "../../../data/onboardingConfig";
 
 export function OnboardingFlow() {
   const [step, setStep] = useState(0);
@@ -20,7 +18,7 @@ export function OnboardingFlow() {
   }, [textExiting]);
 
   const onTextExitComplete = useCallback(() => {
-    setStep((s) => (s >= LAST_STEP ? 0 : s + 1));
+    setStep((s) => (s >= TOTAL_STEPS - 1 ? 0 : s + 1));
     setEnterNonce((n) => n + 1);
     setTextExiting(false);
   }, []);

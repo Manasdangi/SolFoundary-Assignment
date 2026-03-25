@@ -17,7 +17,7 @@ src/
 │   ├── icons/          # Custom SVG icon components
 │   ├── modules/
 │   │   └── onboarding/ # Onboarding flow (cards, insights, segments, etc.)
-│   └── ui/             # Reusable UI components (Badge, Button, Card)
+│   └── ui/             # Reusable UI components (Button, Card)
 ├── data/
 │   └── onboardingConfig.ts  # Step configuration data
 ├── App.tsx

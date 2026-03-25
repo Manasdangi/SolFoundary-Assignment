@@ -29,14 +29,14 @@ export function CardContent({
   const onHeadingExitEnd = (e: AnimationEvent<HTMLDivElement>) => {
     if (e.target !== e.currentTarget) return;
     if (!textExiting) return;
-    if (e.animationName !== "onboarding-text-fade-out") return;
+    if (e.animationName !== "fade-out") return;
     onTextExitComplete?.();
   };
 
   const onLineRevealAnimationEnd = (e: AnimationEvent<HTMLDivElement>) => {
     if (e.target !== e.currentTarget) return;
     if (textExiting) return;
-    if (e.animationName !== "onboarding-line-reveal") return;
+    if (e.animationName !== "fade-in") return;
     onTextEnterComplete?.();
   };
 
