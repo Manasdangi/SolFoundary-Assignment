@@ -12,6 +12,14 @@ import { AnalyzedSoFar } from "./AnalyzedSoFar";
 import { Insights } from "./Insights";
 import type { OnboardingCardData } from "../type";
 
+function getLowerSectionStyle(insightsRevealed: boolean, lowerHeight: number) {
+  const isVisible = insightsRevealed && lowerHeight > 0;
+  return {
+    marginTop: isVisible ? -16 : lowerHeight > 0 ? -(lowerHeight + 16) : 0,
+    opacity: isVisible ? 1 : 0,
+  };
+}
+
 type OnboardingCardProps = {
   data: OnboardingCardData;
   textExiting?: boolean;
@@ -38,14 +46,13 @@ export function OnboardingCard({
   const lowerRevealRef = useRef<HTMLDivElement>(null);
   const lowerContentRef = useRef<HTMLDivElement>(null);
 
-  // Ref for the previous transition key. This is used to check if the transition key has changed.
-  const prevNonceRef = useRef(step);
+  const prevStepRef = useRef(step);
 
   const onTextEnterCompleteRef = useRef(onTextEnterComplete);
   onTextEnterCompleteRef.current = onTextEnterComplete;
 
-  if (prevNonceRef.current !== step) {
-    prevNonceRef.current = step;
+  if (prevStepRef.current !== step) {
+    prevStepRef.current = step;
     if (insightsRevealed) setInsightsRevealed(false);
     if (lowerHeight !== 0) setLowerHeight(0);
   }
@@ -114,8 +121,8 @@ export function OnboardingCard({
             subtitle={subtitle}
             textExiting={textExiting}
             step={step}
-            onTextExitComplete={onTextExitComplete}
             onTextEnterComplete={handleTextEnterComplete}
+            onTextExitComplete={onTextExitComplete}
           />
         </div>
       </Card>
@@ -124,15 +131,7 @@ export function OnboardingCard({
         <div
           ref={lowerRevealRef}
           className={`relative z-0 w-full ${insightsRevealed ? "insights-reveal" : ""} ${textExiting ? "text-fade-out" : ""}`}
-          style={{
-            marginTop:
-              insightsRevealed && lowerHeight > 0
-                ? -16
-                : lowerHeight > 0
-                  ? -(lowerHeight + 16)
-                  : 0,
-            opacity: insightsRevealed && lowerHeight > 0 ? 1 : 0,
-          }}
+          style={getLowerSectionStyle(insightsRevealed, lowerHeight)}
         >
           <div ref={lowerContentRef}>
             {analyzedSoFar && <AnalyzedSoFar data={analyzedSoFar} />}
