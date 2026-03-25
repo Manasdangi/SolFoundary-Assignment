@@ -1,7 +1,10 @@
 import { useCallback, useState } from "react";
 import { OnboardingCard } from "./OnboardingCard";
 import { CtaFooter } from "./CtaFooter";
-import { getOnboardingCardData, TOTAL_STEPS } from "../../../data/onboardingConfig";
+import {
+  getOnboardingCardData,
+  TOTAL_STEPS,
+} from "../../../data/onboardingConfig";
 
 export function OnboardingFlow() {
   const [step, setStep] = useState(0);

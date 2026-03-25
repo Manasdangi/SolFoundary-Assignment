@@ -2,10 +2,10 @@ import type { AnimationEvent } from "react";
 import { SolIcon } from "../../icons/SolIcon";
 
 const titleCls =
-  "font-display text-[1.45rem] font-medium leading-snug tracking-tight text-neutral-900 sm:text-[1.55rem]";
+  "font-display text-[32px] font-medium leading-snug tracking-tight text-neutral-900";
 
 const subtitleCls =
-  "mt-3 max-w-[440px] space-y-1 text-[15px] leading-relaxed text-neutral-500";
+  "mt-3 max-w-[440px] space-y-1 text-[13px] leading-relaxed text-[#666666]";
 
 type CardContentProps = {
   title: string;
@@ -42,7 +42,7 @@ export function CardContent({
 
   const TextContent = textExiting ? (
     <div
-      className="flex w-full flex-col items-center animate-onboarding-text-out"
+      className="flex w-full max-w-[60%] flex-col items-center animate-onboarding-text-out"
       onAnimationEnd={onHeadingExitEnd}
     >
       <h1 className={titleCls}>{title}</h1>
@@ -55,7 +55,10 @@ export function CardContent({
       )}
     </div>
   ) : (
-    <div key={headingEnterNonce} className="flex w-full flex-col items-center">
+    <div
+      key={headingEnterNonce}
+      className="flex w-full max-w-[60%] flex-col items-center"
+    >
       <h1
         className={`onboarding-line-reveal-delay-2 ${titleCls}`}
         onAnimationEnd={

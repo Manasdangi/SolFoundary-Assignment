@@ -9,7 +9,7 @@ export function Insights({ insights }: InsightsProps) {
   if (insights.length === 0) return null;
 
   return (
-    <div className="flex w-full flex-col gap-2 pt-3 pb-0 mb-0">
+    <div className="relative z-10 flex w-full flex-col gap-2 pt-6 pb-0 mb-0">
       {insights.map((r) => (
         <div
           key={r.id}

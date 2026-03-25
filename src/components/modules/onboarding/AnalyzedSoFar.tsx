@@ -14,7 +14,7 @@ export function AnalyzedSoFar({ data }: AnalyzedSoFarProps) {
   };
 
   return (
-    <div className="w-full overflow-hidden rounded-b-[8px] border-b border-l border-r border-neutral-200">
+    <div className="w-full overflow-hidden rounded-b-[8px] border-b border-l border-r border-neutral-200 bg-white pt-4">
       <Row row={row} />
     </div>
   );

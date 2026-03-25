@@ -109,7 +109,7 @@ export function OnboardingCard({
   return (
     <div className="w-[600px] max-w-full">
       <Card
-        className="w-full max-w-none overflow-hidden"
+        className="relative z-10 w-full max-w-none overflow-hidden"
         contentClassName="flex flex-col p-0"
         style={{
           minHeight: 300,
@@ -130,7 +130,7 @@ export function OnboardingCard({
       {hasLower && (
         <div
           ref={lowerRevealRef}
-          className="grid w-full onboarding-lower-reveal"
+          className="relative z-0 -mt-4 grid w-full onboarding-lower-reveal"
           style={{ gridTemplateRows: insightsRevealed ? "1fr" : "0fr" }}
         >
           <div

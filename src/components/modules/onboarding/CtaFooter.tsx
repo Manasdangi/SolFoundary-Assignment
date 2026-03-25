@@ -1,3 +1,5 @@
+import type { AnimationEvent } from "react";
+import { useState } from "react";
 import { EnterKeyIcon } from "../../icons/EnterKeyIcon";
 import { Button } from "../../ui/Button";
 
@@ -10,17 +12,28 @@ type CtaFooterProps = {
   onNext: () => void;
 };
 
-export function CtaFooter({
-  step,
-  textExiting,
-  show,
-  onNext,
-}: CtaFooterProps) {
-  if (!show) return null;
+export function CtaFooter({ step, textExiting, show, onNext }: CtaFooterProps) {
+  const [visible, setVisible] = useState(false);
+
+  if (show && !visible) setVisible(true);
+
+  if (!visible) return null;
+
+  const fading = !show;
+
+  const handleAnimationEnd = (e: AnimationEvent<HTMLDivElement>) => {
+    if (e.animationName === "fade-out") {
+      setVisible(false);
+    }
+  };
 
   return (
     <footer className="flex shrink-0 justify-center px-4 pb-10 pt-2 sm:pb-12">
-      <div key={`cta-${step}`} className="animate-onboarding-button">
+      <div
+        key={`cta-${step}`}
+        className={fading ? "animate-onboarding-text-out" : "animate-onboarding-button"}
+        onAnimationEnd={handleAnimationEnd}
+      >
         <Button
           onClick={onNext}
           disabled={textExiting}
