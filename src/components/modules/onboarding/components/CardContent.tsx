@@ -12,7 +12,7 @@ type CardContentProps = {
   subtitle: string[];
   textExiting: boolean;
   /** Bumps on each transition so stagger can replay for new copy. */
-  transitionKey: number;
+  step: number;
   onTextExitComplete?: () => void;
   onTextEnterComplete?: () => void;
 };
@@ -22,7 +22,7 @@ export function CardContent({
   title,
   subtitle,
   textExiting,
-  transitionKey,
+  step,
   onTextExitComplete,
   onTextEnterComplete,
 }: CardContentProps) {
@@ -56,7 +56,7 @@ export function CardContent({
     </div>
   ) : (
     <div
-      key={transitionKey}
+      key={step}
       className="flex w-full max-w-[60%] flex-col items-center"
     >
       <h1

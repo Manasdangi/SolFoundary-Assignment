@@ -17,7 +17,7 @@ type OnboardingCardProps = {
   textExiting?: boolean;
   onTextExitComplete?: () => void;
   onTextEnterComplete?: () => void;
-  transitionKey?: number;
+  step?: number;
 };
 
 export function OnboardingCard({
@@ -25,7 +25,7 @@ export function OnboardingCard({
   textExiting = false,
   onTextExitComplete,
   onTextEnterComplete,
-  transitionKey = 0,
+  step = 0,
 }: OnboardingCardProps) {
   const { title, subtitle, analyzedSoFar, insights, notes } = data;
   const hasNotes = notes != null;
@@ -39,13 +39,13 @@ export function OnboardingCard({
   const lowerContentRef = useRef<HTMLDivElement>(null);
 
   // Ref for the previous transition key. This is used to check if the transition key has changed.
-  const prevNonceRef = useRef(transitionKey);
+  const prevNonceRef = useRef(step);
 
   const onTextEnterCompleteRef = useRef(onTextEnterComplete);
   onTextEnterCompleteRef.current = onTextEnterComplete;
 
-  if (prevNonceRef.current !== transitionKey) {
-    prevNonceRef.current = transitionKey;
+  if (prevNonceRef.current !== step) {
+    prevNonceRef.current = step;
     if (insightsRevealed) setInsightsRevealed(false);
     if (lowerHeight !== 0) setLowerHeight(0);
   }
@@ -57,15 +57,11 @@ export function OnboardingCard({
       onTextEnterCompleteRef.current?.();
       return;
     }
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      onTextEnterCompleteRef.current?.();
-    }
   }, [hasLower]);
 
   // After insights are revealed, wait for the margin-top transition on the lower panel to finish, then notify parent.
   useEffect(() => {
     if (!insightsRevealed || !hasLower) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const el = lowerRevealRef.current;
     const notify = () => onTextEnterCompleteRef.current?.();
@@ -104,22 +100,6 @@ export function OnboardingCard({
     if (el) setLowerHeight(el.scrollHeight);
   }, [data]);
 
-  // When reduced-motion is active, skip CSS transitions and fire the enter-complete callback immediately.
-  useLayoutEffect(() => {
-    if (textExiting) return;
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = requestAnimationFrame(() => handleTextEnterComplete());
-    return () => cancelAnimationFrame(id);
-  }, [
-    textExiting,
-    transitionKey,
-    title,
-    subtitle.join("\n"),
-    handleTextEnterComplete,
-  ]);
-
-  /* ── Render ─────────────────────────────────────────────── */
-
   return (
     <div className="w-[600px] max-w-full">
       {/* Card */}
@@ -133,7 +113,7 @@ export function OnboardingCard({
             title={title}
             subtitle={subtitle}
             textExiting={textExiting}
-            transitionKey={transitionKey}
+            step={step}
             onTextExitComplete={onTextExitComplete}
             onTextEnterComplete={handleTextEnterComplete}
           />

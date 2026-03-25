@@ -9,8 +9,6 @@ import {
 export function OnboardingFlow() {
   const [step, setStep] = useState(0);
   const [textExiting, setTextExiting] = useState(false);
-  /** Bumps after each transition so heading block fades in (skipped on first paint). */
-  const [transitionKey, setTransitionKey] = useState(0);
   const [ctaReady, setCtaReady] = useState(false);
 
   const goNext = useCallback(() => {
@@ -22,7 +20,6 @@ export function OnboardingFlow() {
 
   const onTextExitComplete = useCallback(() => {
     setStep((s) => (s >= TOTAL_STEPS - 1 ? 0 : s + 1));
-    setTransitionKey((n) => n + 1);
     setTextExiting(false);
   }, []);
 
@@ -36,7 +33,7 @@ export function OnboardingFlow() {
           textExiting={textExiting}
           onTextEnterComplete={() => setCtaReady(true)}
           onTextExitComplete={onTextExitComplete}
-          transitionKey={transitionKey}
+          step={step}
         />
       </main>
 
