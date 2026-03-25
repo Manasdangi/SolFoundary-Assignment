@@ -5,6 +5,8 @@
   --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
 
+/* ── Keyframes ─────────────────────────────────────────────── */
+
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -15,25 +17,32 @@
   to { opacity: 0; }
 }
 
-@layer utilities {
-  .animate-onboarding-button {
-    animation: fade-in 0.4s linear both;
-  }
+/* ── Onboarding animation utilities ────────────────────────── */
 
-  .animate-onboarding-text-out {
+@layer utilities {
+  /* Shared exit animation for title, subtitle, insights, and CTA */
+  .text-fade-out {
     animation: fade-out 0.34s linear both;
   }
 
-  .onboarding-line-reveal-delay-2 {
+  /* CTA button entrance */
+  .cta-fade-in {
+    animation: fade-in 0.4s linear both;
+  }
+
+  /* Staggered reveal for title (delay: 250ms) and subtitle (delay: 400ms) */
+  .stagger-reveal-1 {
     opacity: 0;
     animation: fade-in 0.48s linear 0.25s both;
   }
 
-  .onboarding-line-reveal-delay-3 {
+  .stagger-reveal-2 {
     opacity: 0;
     animation: fade-in 0.48s linear 0.4s both;
   }
 }
+
+/* ── Card decorative corner hatch ──────────────────────────── */
 
 @layer components {
   .card-corner-hatch {
@@ -68,6 +77,8 @@
   }
 }
 
+/* ── Base resets ───────────────────────────────────────────── */
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -78,23 +89,27 @@ body {
   min-height: 100dvh;
 }
 
-.onboarding-lower-reveal {
-  transition: grid-template-rows 1.6s cubic-bezier(0.22, 1, 0.36, 1);
+/* ── Insights / lower-section slide reveal ─────────────────── */
+
+.insights-reveal {
+  transition: margin-top 1.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* ── Reduced-motion overrides ──────────────────────────────── */
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-onboarding-button {
+  .cta-fade-in {
     animation-duration: 0.01ms !important;
   }
 
-  .animate-onboarding-text-out,
-  .onboarding-line-reveal-delay-2,
-  .onboarding-line-reveal-delay-3 {
+  .text-fade-out,
+  .stagger-reveal-1,
+  .stagger-reveal-2 {
     animation: none !important;
     opacity: 1 !important;
   }
 
-  .onboarding-lower-reveal {
+  .insights-reveal {
     transition: none !important;
   }
 }

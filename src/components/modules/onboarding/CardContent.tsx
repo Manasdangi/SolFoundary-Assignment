@@ -42,7 +42,7 @@ export function CardContent({
 
   const TextContent = textExiting ? (
     <div
-      className="flex w-full max-w-[60%] flex-col items-center animate-onboarding-text-out"
+      className="flex w-full max-w-[60%] flex-col items-center text-fade-out"
       onAnimationEnd={onHeadingExitEnd}
     >
       <h1 className={titleCls}>{title}</h1>
@@ -60,7 +60,7 @@ export function CardContent({
       className="flex w-full max-w-[60%] flex-col items-center"
     >
       <h1
-        className={`onboarding-line-reveal-delay-2 ${titleCls}`}
+        className={`stagger-reveal-1 ${titleCls}`}
         onAnimationEnd={
           subtitle.length === 0 ? onLineRevealAnimationEnd : undefined
         }
@@ -69,7 +69,7 @@ export function CardContent({
       </h1>
       {subtitle.length > 0 && (
         <div
-          className={`onboarding-line-reveal-delay-3 ${subtitleCls}`}
+          className={`stagger-reveal-2 ${subtitleCls}`}
           onAnimationEnd={onLineRevealAnimationEnd}
         >
           {subtitle.map((l) => (

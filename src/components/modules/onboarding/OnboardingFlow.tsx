@@ -30,7 +30,7 @@ export function OnboardingFlow() {
 
   return (
     <div className="flex min-h-dvh flex-col bg-[#f4f4f5] font-body text-neutral-900">
-      <main className="flex flex-1 flex-col items-center px-4 pb-6 pt-[203px] sm:px-6 sm:pb-8">
+      <main className="flex flex-1 flex-col items-center px-4 pb-6 pt-[120px] sm:px-6 sm:pb-8">
         <OnboardingCard
           data={cardData}
           textExiting={textExiting}

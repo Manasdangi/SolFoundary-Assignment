@@ -31,7 +31,7 @@ export function CtaFooter({ step, textExiting, show, onNext }: CtaFooterProps) {
     <footer className="flex shrink-0 justify-center px-4 pb-10 pt-2 sm:pb-12">
       <div
         key={`cta-${step}`}
-        className={fading ? "animate-onboarding-text-out" : "animate-onboarding-button"}
+        className={fading ? "text-fade-out" : "cta-fade-in"}
         onAnimationEnd={handleAnimationEnd}
       >
         <Button

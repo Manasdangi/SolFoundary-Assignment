@@ -39,9 +39,20 @@ export function OnboardingCard({
   const hasLower = analyzedSoFar != null || insights.length > 0 || hasNotes;
 
   const [insightsRevealed, setInsightsRevealed] = useState(false);
+  const [ready, setReady] = useState(true);
   const lowerRevealRef = useRef<HTMLDivElement>(null);
+  const lowerContentRef = useRef<HTMLDivElement>(null);
+  const [lowerHeight, setLowerHeight] = useState(0);
+  const prevNonceRef = useRef(headingEnterNonce);
   const onTextEnterCompleteRef = useRef(onTextEnterComplete);
   onTextEnterCompleteRef.current = onTextEnterComplete;
+
+  if (prevNonceRef.current !== headingEnterNonce) {
+    prevNonceRef.current = headingEnterNonce;
+    if (insightsRevealed) setInsightsRevealed(false);
+    if (lowerHeight !== 0) setLowerHeight(0);
+    if (ready) setReady(false);
+  }
 
   const handleTextEnterComplete = useCallback(() => {
     setInsightsRevealed(true);
@@ -75,13 +86,13 @@ export function OnboardingCard({
 
     const onEnd = (e: TransitionEvent) => {
       if (e.target !== el) return;
-      if (e.propertyName !== "grid-template-rows") return;
+      if (e.propertyName !== "margin-top") return;
       el.removeEventListener("transitionend", onEnd);
       finish();
     };
 
     el.addEventListener("transitionend", onEnd);
-    const timeoutId = window.setTimeout(finish, 1200);
+    const timeoutId = window.setTimeout(finish, 2000);
 
     return () => {
       el.removeEventListener("transitionend", onEnd);
@@ -90,8 +101,15 @@ export function OnboardingCard({
   }, [insightsRevealed, hasLower]);
 
   useLayoutEffect(() => {
-    setInsightsRevealed(false);
-  }, [headingEnterNonce]);
+    const el = lowerContentRef.current;
+    if (el) setLowerHeight(el.scrollHeight);
+  }, [data]);
+
+  useLayoutEffect(() => {
+    if (!ready) {
+      requestAnimationFrame(() => setReady(true));
+    }
+  }, [ready]);
 
   useLayoutEffect(() => {
     if (textExiting) return;
@@ -107,7 +125,7 @@ export function OnboardingCard({
   ]);
 
   return (
-    <div className="w-[600px] max-w-full">
+    <div className="w-[600px] max-w-full" style={ready ? undefined : { opacity: 0 }}>
       <Card
         className="relative z-10 w-full max-w-none overflow-hidden"
         contentClassName="flex flex-col p-0"
@@ -130,12 +148,18 @@ export function OnboardingCard({
       {hasLower && (
         <div
           ref={lowerRevealRef}
-          className="relative z-0 -mt-4 grid w-full onboarding-lower-reveal"
-          style={{ gridTemplateRows: insightsRevealed ? "1fr" : "0fr" }}
+          className={`relative z-0 w-full insights-reveal ${textExiting ? "text-fade-out" : ""}`}
+          style={{
+            marginTop:
+              insightsRevealed && lowerHeight > 0
+                ? -16
+                : lowerHeight > 0
+                  ? -(lowerHeight + 16)
+                  : 0,
+            opacity: insightsRevealed && lowerHeight > 0 ? 1 : 0,
+          }}
         >
-          <div
-            className={`min-h-0 overflow-hidden transition-opacity duration-300 ${insightsRevealed ? "opacity-100" : "opacity-0"} ${textExiting ? "animate-onboarding-text-out" : ""}`}
-          >
+          <div ref={lowerContentRef}>
             {analyzedSoFar && <AnalyzedSoFar data={analyzedSoFar} />}
             <Insights insights={insights} />
             {hasNotes && <Notes notes={notes} />}
