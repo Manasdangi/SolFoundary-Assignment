@@ -10,7 +10,7 @@ export function Row({ row }: RowProps) {
   const LeadIcon = ICON_SPRITE[row.leadingIconKey ?? "sparkle"];
   return (
     <div className="flex items-center justify-between border-b border-neutral-100 px-6 py-4 last:border-b-0">
-      <div className="flex items-center gap-2 text-sm text-neutral-500">
+      <div className="flex items-center gap-2 text-sm font-medium text-neutral-500">
         <LeadIcon className="h-4 w-4 shrink-0 text-sky-500" aria-hidden />
         <span>{row.label}</span>
       </div>

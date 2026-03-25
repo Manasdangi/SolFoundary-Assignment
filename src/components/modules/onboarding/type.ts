@@ -22,6 +22,4 @@ export type OnboardingCardData = {
   };
   insights: SummaryRow[];
   notes: string | null;
-  /** Title/subtitle enter with staggered delays (see `onboarding-line-reveal` in CSS). */
-  headerLineReveal?: boolean;
 };

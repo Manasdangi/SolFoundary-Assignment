@@ -79,8 +79,8 @@ export function CardContent({
 
   return (
     <div className="flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto px-8 text-center">
-      <div className="flex min-h-full w-full max-w-full flex-col items-center justify-center">
-        <SolIcon width={80} height={80} className="hrink-0" />
+      <div className="flex w-full max-w-full flex-col items-center pt-12">
+        <SolIcon width={80} height={80} className="shrink-0" />
         {TextContent}
       </div>
     </div>

@@ -174,7 +174,7 @@ body {
 
 /* Insights + footer: slide into view after heading reveal finishes. */
 .onboarding-lower-reveal {
-  transition: grid-template-rows 1s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: grid-template-rows 1.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @media (prefers-reduced-motion: reduce) {

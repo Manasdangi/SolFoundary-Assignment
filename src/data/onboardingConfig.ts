@@ -10,14 +10,13 @@ export const step1OnboardingCardData: OnboardingCardData = {
   subtitle: "Your personal AI, custom-trained. Time to start sharing here.",
   insights: [],
   notes: null,
-  headerLineReveal: true,
 };
 
 export const step2OnboardingCardData: OnboardingCardData = {
-  title: "Here's what I've covered.",
+  title: "First, here’s what we sifted through so far...",
   subtitleLines: [
-    "This is across the last 28 days.",
-    "Going through older conversations as we speak",
+    "This is across the last 14 days. ",
+    "Open loops from earlier will be captured soon.",
   ],
   analyzedSoFar: {
     id: "analyzed",
@@ -29,14 +28,12 @@ export const step2OnboardingCardData: OnboardingCardData = {
     ],
   },
   insights: [],
-  headerLineReveal: true,
   notes: null,
 };
 
 export const step3OnboardingCardData: OnboardingCardData = {
   title: "Across your Slack, here's what we found",
   subtitle: "Sol will continue to find older & newer items over time",
-  headerLineReveal: true,
   insights: [
     {
       id: "collaborating",
@@ -53,8 +50,8 @@ export const step3OnboardingCardData: OnboardingCardData = {
       leadingIconKey: "sparkle",
       label: "Open loops found",
       segments: [
-        { kind: "metric", iconKey: "userCheck", label: "17 open on you" },
-        { kind: "metric", iconKey: "users", label: "37 awaited on others" },
+        { kind: "metric", iconKey: "userIncoming", label: "17 open on you" },
+        { kind: "metric", iconKey: "userOutgoing", label: "37 awaited on others" },
       ],
     },
   ],

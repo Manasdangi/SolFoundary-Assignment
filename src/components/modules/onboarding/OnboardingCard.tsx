@@ -116,7 +116,7 @@ export function OnboardingCard({
           height: "auto",
         }}
       >
-        <div className="flex h-[300px] min-h-0 shrink-0 flex-col text-center">
+        <div className="flex min-h-[300px] shrink-0 flex-col text-center">
           <CardContent
             title={title}
             subtitle={lines}
